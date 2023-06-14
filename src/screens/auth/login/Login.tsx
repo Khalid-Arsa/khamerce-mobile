@@ -7,7 +7,8 @@ import {
 } from 'react-native-responsive-screen';
 
 export const Login: React.FC<any> = () => {
-  const [number, onChangeNumber] = React.useState('');
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
 
   return (
     <SafeAreaView style={LoginStyle.safeAreaContainer}>
@@ -36,17 +37,16 @@ export const Login: React.FC<any> = () => {
             }}>
             <TextInput
               style={LoginStyle.input}
-              onChangeText={onChangeNumber}
-              value={number}
+              onChangeText={setEmail}
+              value={email}
               placeholder="Email"
-              keyboardType="numeric"
+              keyboardType="email-address"
             />
             <TextInput
               style={LoginStyle.input}
-              onChangeText={onChangeNumber}
-              value={number}
+              onChangeText={setPassword}
+              value={password}
               placeholder="Password"
-              keyboardType="numeric"
             />
             <View>
               <Button 
