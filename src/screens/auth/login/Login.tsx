@@ -50,8 +50,7 @@ export const Login: React.FC<any> = () => {
             />
             <View>
               <Button 
-                  title="Learn More"
-                  accessibilityLabel="Learn more about this purple button"
+                  title="Sign in"
                   onPress={() => console.log('Button with adjusted color pressed')}
               />
             </View>
