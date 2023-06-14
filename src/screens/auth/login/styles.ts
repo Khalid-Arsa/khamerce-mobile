@@ -8,7 +8,6 @@ import {
 export const LoginStyle = StyleSheet.create({
   safeAreaContainer: {
     flex: 1,
-    backgroundColor: colorPalette.palette.secondary[300],
   },
   scrollView: {
     flex: 1,
