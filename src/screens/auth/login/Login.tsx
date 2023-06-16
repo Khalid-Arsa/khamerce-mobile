@@ -1,14 +1,29 @@
 import React from 'react';
-import {SafeAreaView, View, Text, ScrollView, TextInput, Button} from 'react-native';
+import {
+  SafeAreaView,
+  View,
+  Text,
+  ScrollView,
+  TextInput,
+  Button,
+} from 'react-native';
 import {LoginStyle} from './styles';
 import {
   heightPercentageToDP,
   widthPercentageToDP,
 } from 'react-native-responsive-screen';
+import {useAuthStore} from '../../../store/auth';
+import {loginApi} from '../../../services/api/auth.api';
 
 export const Login: React.FC<any> = () => {
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
+  const {email, password, setEmail, setPass} = useAuthStore(state => state);
+
+  const handleLogin = () => {
+    loginApi({
+      email,
+      password,
+    });
+  };
 
   return (
     <SafeAreaView style={LoginStyle.safeAreaContainer}>
@@ -18,7 +33,7 @@ export const Login: React.FC<any> = () => {
             borderColor: 'black',
             borderWidth: 2,
             width: widthPercentageToDP(90),
-            paddingVertical: 20
+            paddingVertical: 20,
           }}>
           {/* header */}
           <View
@@ -44,15 +59,12 @@ export const Login: React.FC<any> = () => {
             />
             <TextInput
               style={LoginStyle.input}
-              onChangeText={setPassword}
+              onChangeText={setPass}
               value={password}
               placeholder="Password"
             />
             <View>
-              <Button 
-                  title="Sign in"
-                  onPress={() => console.log('Button with adjusted color pressed')}
-              />
+              <Button title="Sign in" onPress={handleLogin} />
             </View>
           </View>
         </View>

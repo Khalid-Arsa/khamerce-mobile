@@ -3,6 +3,7 @@ interface CredentialInterface {
   password: string;
 }
 
-export const loginApi = (creds: CredentialInterface) => {
-  console.log(creds)
-}
+export const loginApi = ({email, password}: CredentialInterface) => {
+  console.log(email);
+  console.log(password);
+};
