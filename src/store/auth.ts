@@ -1,19 +1,23 @@
 import { create } from "zustand";
+import { ILoginCredentials } from "~/lib/interfaces/user.interface";
 
 interface CredentialInterface {
-  email: string;
-  password: string;
-  setEmail: any;
-  setPass: any
+  credentials: {
+    email: string,
+    password: string
+  },
+  setCredentials: any
 }
 
 export const useAuthStore = create<CredentialInterface>(set => ({
-  email: '',
-  password: '',
-  setEmail: async (email: string) => {
-    set({email: email})
+  credentials: {
+    email: '',
+    password: ''
   },
-  setPass: async (pass: string) => {
-    set({password: pass})
+  setCredentials: async (data: ILoginCredentials) => {
+    set({credentials: {
+      email: data.email,
+      password: data.password
+    }})
   },
 }))

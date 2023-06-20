@@ -16,13 +16,11 @@ import {useAuthStore} from '../../../store/auth';
 import {loginApi} from '../../../services/api/auth.api';
 
 export const Login: React.FC<any> = () => {
-  const {email, password, setEmail, setPass} = useAuthStore(state => state);
+  const {credentials, setCredentials} = useAuthStore(state => state);
 
   const handleLogin = () => {
-    loginApi({
-      email,
-      password,
-    });
+    // loginApi(credentials);
+    console.log(credentials)
   };
 
   return (
@@ -52,15 +50,15 @@ export const Login: React.FC<any> = () => {
             }}>
             <TextInput
               style={LoginStyle.input}
-              onChangeText={setEmail}
-              value={email}
+              value={credentials?.email}
+              onChange={(e) => setCredentials({ ...credentials, email: "khalid@gmail.com" })}
               placeholder="Email"
               keyboardType="email-address"
             />
             <TextInput
               style={LoginStyle.input}
-              onChangeText={setPass}
-              value={password}
+              value={credentials?.password}
+              onChange={(e) => setCredentials({ ...credentials, password: "hunter101" })}
               placeholder="Password"
             />
             <View>
