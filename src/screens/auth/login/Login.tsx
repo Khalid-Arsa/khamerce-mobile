@@ -8,14 +8,12 @@ import {
   Button,
 } from 'react-native';
 import {LoginStyle} from './styles';
-import {
-  widthPercentageToDP,
-} from 'react-native-responsive-screen';
-import {useAuthStore} from '../../../store/auth';
+import {widthPercentageToDP} from 'react-native-responsive-screen';
 import {loginApi} from '../../../services/api/auth.api';
+import {useAuthStore} from '../../../store/auth';
 
 export const Login: React.FC<any> = () => {
-  const {credentials, setCredentials} = useAuthStore(state => state);
+  const {credentials, actions} = useAuthStore();
 
   const handleLogin = () => {
     loginApi(credentials);
@@ -48,15 +46,19 @@ export const Login: React.FC<any> = () => {
             }}>
             <TextInput
               style={LoginStyle.input}
-              value={credentials?.email}
-              onChangeText={(e) => setCredentials({...credentials, email: e})}
+              value={credentials.email}
+              onChangeText={e =>
+                actions.setCredentials({...credentials, email: e})
+              }
               placeholder="Email"
               keyboardType="email-address"
             />
             <TextInput
               style={LoginStyle.input}
-              value={credentials?.password}
-              onChangeText={(e) => setCredentials({...credentials, password: e})}
+              value={credentials.password}
+              onChangeText={e =>
+                actions.setCredentials({...credentials, password: e})
+              }
               placeholder="Password"
             />
             <View>
