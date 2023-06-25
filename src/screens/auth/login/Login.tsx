@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import {LoginStyle} from './styles';
 import {
-  heightPercentageToDP,
   widthPercentageToDP,
 } from 'react-native-responsive-screen';
 import {useAuthStore} from '../../../store/auth';
@@ -19,8 +18,7 @@ export const Login: React.FC<any> = () => {
   const {credentials, setCredentials} = useAuthStore(state => state);
 
   const handleLogin = () => {
-    // loginApi(credentials);
-    console.log(credentials)
+    loginApi(credentials);
   };
 
   return (
@@ -51,14 +49,14 @@ export const Login: React.FC<any> = () => {
             <TextInput
               style={LoginStyle.input}
               value={credentials?.email}
-              onChange={(e) => setCredentials({ ...credentials, email: "khalid@gmail.com" })}
+              onChangeText={(e) => setCredentials({...credentials, email: e})}
               placeholder="Email"
               keyboardType="email-address"
             />
             <TextInput
               style={LoginStyle.input}
               value={credentials?.password}
-              onChange={(e) => setCredentials({ ...credentials, password: "hunter101" })}
+              onChangeText={(e) => setCredentials({...credentials, password: e})}
               placeholder="Password"
             />
             <View>
